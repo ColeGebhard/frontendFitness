@@ -1,10 +1,15 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+import {
+    Header
+} from './components'
 
 
 const App = ()=> {
     return (
       <div>
-        <h1>Hello world</h1>
+        <Header />
       </div>
     );
   };
