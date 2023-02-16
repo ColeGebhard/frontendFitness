@@ -1,18 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
-    return <div id="title">
-        <h1>
-            Fitness tracker
-        </h1>
-        {
-
-        }
-        <h5>
-            Get fit with others
-        </h5>
-    </div>
+    return (
+        <header id='header'>
+            <Link to={'/home'}>Home</Link>
+            <Link to={'/posts'}>Posts</Link>
+        </header>
+    )
 };
 
 export default Header;
