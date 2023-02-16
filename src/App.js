@@ -4,12 +4,13 @@ import { TOKEN_STORAGE_KEY, BASE_URL, COHORT_NAME } from './const';
 
 
 import {
-    Header,
-    Login
+  Header,
+  Login,
+  NotFound
 } from './components'
 
 
-const App = ()=> {
+const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
@@ -40,22 +41,25 @@ const App = ()=> {
     window.alert('Log out success')
   }, []);
 
-    return (
-      <div>
-        <Header />
-        <main>
+  return (
+    <div>
+      <Switch>
+        <Route exact path={'/'}>
+          <Header />
+        </Route>
         <Route exact path={'/login'}>
-              <Login username={username}
-                password={password}
-                setUsername={setTargetValue(setUsername)}
-                setPassword={setTargetValue(setPassword)}
-                setToken={setTokenHere}
-              />
-            </Route>
-        </main>
-      </div>
-    );
-  };
+          <Login username={username}
+            password={password}
+            setUsername={setTargetValue(setUsername)}
+            setPassword={setTargetValue(setPassword)}
+            setToken={setTokenHere}
+          />
+        </Route>
+        <Route component={NotFound} />
+      </Switch>
+    </div>
+  );
+};
 
 
 export default App;
