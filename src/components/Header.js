@@ -16,11 +16,11 @@ const Header = ({
     if (token) {
         return (
             <header id='header'>
-                <Link to={'/home'}>Home</Link>
-                <Link to={'/posts'}>Posts</Link>
-                <Link to={'/profile'}>Profile</Link>
+                <Link to={'/'}>Home</Link>
+                <Link to={'/routines'}>Routines</Link>
+                <Link to={'/'}>My Routines</Link>
+                <Link to={'/activities'}>Activities</Link>
                 <form id='userformset' onSubmit={logout}>
-                    <h2>Hello {currentUser}</h2>
                     <button type='submit'>Log Out</button>
                 </form>
             </header>

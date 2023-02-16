@@ -28,6 +28,7 @@ const Login = ({
                         if (response.token){
                             
                             setUser(localStorage.getItem('user'))
+                            window.alert('Loggin in succesfully')
                             window.location.href = ('/#/')
                         } else {
                             setUser(false)
