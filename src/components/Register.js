@@ -1,16 +1,14 @@
-import React, {useState} from "react";
-import { login } from "./api/requests";
+import React from "react";
+import { register } from "./api/requests";
+import { useState } from "react";
 
-const Login = ({
-    setUser,
-    setToken,
-    user,
-    username,
-    password,
-    setUsername,
-    setPassword
+const Register = ({
+    setToken
 }) => {
 
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+  
 
     return (<div id='login'>
 
@@ -18,28 +16,24 @@ const Login = ({
             onSubmit={
                 async (event) => {
                     event.preventDefault()
-
-                   try{
+                    try {
                         console.log(username, password)
-                        const response = await login(username, password)
-                        console.log(response.token)
+                        const response = await register(username, password)
+                        console.log(response);
                         setToken(response.token)
 
-                        if (response.token){
-                            
-                            setUser(localStorage.getItem('user'))
-                            window.location.href = ('/#/')
-                        } else {
-                            setUser(false)
+                        if(response.token){
+                        window.location.href = ('/#/')
                         }
-                   } catch (error) {
+                    } catch (error) {
                         console.error(error)
-                   }
+                        window.alert('Invalid Credentials')
+                    }
 
                 }
             }>
             <h2>
-                Log In
+                Sign Up
             </h2>
             <label>
                 <input className='input'
@@ -55,10 +49,11 @@ const Login = ({
                     value={password}
                     type={'password'} />
             </label>
-            <button className='button' type="submit">Login</button>
-            <a href='/#/register' className='button' id='makeaccount' type="submit">New? Click here</a>
+            <button className='button' type="submit">Sign Up</button>
+            <a href='/#/login' className='button' id='makeaccount' type="submit">Existing user? Click here</a>
+
         </form>
     </div>)
 }
 
-export default Login;
+export default Register;
