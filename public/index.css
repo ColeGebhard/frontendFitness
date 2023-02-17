@@ -125,3 +125,23 @@ form {
     font-size: 30px;
     justify-content: space-between;
 }
+
+.routineCard{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: aquamarine;
+}
+
+.routineActivityCard {
+    display: flex;
+    background-color: #06b;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+ul {
+    list-style-type: none;
+}

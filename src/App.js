@@ -101,7 +101,6 @@ const App = () => {
             routines={routines}
             setRoutines={setRoutines}
             token={token}
-            currentUser={me.username}
             />
           </Route>
           <Route component={NotFound} />
