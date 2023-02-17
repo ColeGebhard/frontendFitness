@@ -1,6 +1,3 @@
-
-
-
 const URL = "https://fitnesstrac-kr.herokuapp.com/api/";
 export let token = localStorage.getItem('token')
 
@@ -45,8 +42,6 @@ export const login = async (username, password) => {
             })
         })
         const data = await resp.json()
-        console.log(data.token)
-        localStorage.setItem('token',data.token)
         
         return data
     } catch (error) {
@@ -74,3 +69,19 @@ export const isUser = async (token) => {
         console.error(error)
     }
 }
+
+export const getRoutines = async () => {
+    try {
+        const resp = await fetch(`${URL}routines`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        const data =  resp.json();
+        
+        return data;
+    } catch (error) {
+        console.erro()
+    }
+} 

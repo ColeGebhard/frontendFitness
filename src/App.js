@@ -7,7 +7,8 @@ import { isUser } from './components/api/requests';
 import {
   Header,
   Login,
-  NotFound
+  NotFound,
+  Routines
 } from './components'
 import Register from './components/Register';
 import Welcome from './components/Welcome';
@@ -16,6 +17,8 @@ import Welcome from './components/Welcome';
 const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [routines, setRoutines] = useState([]);
+  const [activities, setActivites] = useState([])
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [me, setMe] = useState('');
@@ -92,6 +95,14 @@ const App = () => {
           <Route exact path={'/'}>
             <Header token={token} logout={logout}/>
             <Welcome />
+          </Route>
+          <Route exact path={'/routines'}>
+            <Routines 
+            routines={routines}
+            setRoutines={setRoutines}
+            token={token}
+            currentUser={me.username}
+            />
           </Route>
           <Route component={NotFound} />
         </Switch>
