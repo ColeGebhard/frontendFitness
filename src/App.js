@@ -7,7 +7,8 @@ import { isUser } from './components/api/requests';
 import {
   Header,
   Login,
-  NotFound
+  NotFound,
+  Activities
 } from './components'
 import Register from './components/Register';
 import Welcome from './components/Welcome';
@@ -92,6 +93,9 @@ const App = () => {
           <Route exact path={'/'}>
             <Header token={token} logout={logout}/>
             <Welcome />
+          </Route>
+          <Route exact path={'/activities'}>
+            <Activities />
           </Route>
           <Route component={NotFound} />
         </Switch>

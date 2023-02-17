@@ -125,3 +125,8 @@ form {
     font-size: 30px;
     justify-content: space-between;
 }
+
+/* Activity Cards */
+.activityCard {
+    margin: 1em
+}

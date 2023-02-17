@@ -66,7 +66,7 @@ export const isUser = async (token) => {
   }
 };
 
-export const Activities = async () => {
+export const getActivities = async () => {
   try {
     const resp = await fetch(`${URL}activities`, {
       headers: {
@@ -80,3 +80,19 @@ export const Activities = async () => {
     console.error(error);
   }
 };
+
+export const getRoutines = async () => {
+  try {
+      const resp = await fetch(`${URL}routines`, {
+          headers: {
+              'Content-Type': 'application/json'
+          },
+      });
+
+      const data =  resp.json();
+      
+      return data;
+  } catch (error) {
+      console.erro()
+  }
+} 
