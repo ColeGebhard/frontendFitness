@@ -68,12 +68,15 @@ export const isUser = async (token) => {
 
 export const Activities = async () => {
   try {
-    const resp = await fetch (`${URL}users/activities`, {
-        headers: {
-            'Content-type' : 'application/json',
-        },
-    }).then (response => response.json())
-    .then (result => {
-        console.log(result);
-    })
-    .catch (console.error);
+    const resp = await fetch(`${URL}activities`, {
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+
+    const data = await resp.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
