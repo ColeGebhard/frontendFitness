@@ -18,6 +18,20 @@ const Routines = ({
         });
     }, [ setRoutines ])
 
+    const routineActivites = async (routines) => {
+        const activities = routines.activities;
+
+        for (let i=0; i < activities.length; i++){
+            const activity = activities[i]
+
+            if (!activity) {
+                return 'Routine had no activites'
+            } else {
+                return activity
+            }
+        }
+    }
+
     console.log(routines)
 
     return (
@@ -31,7 +45,18 @@ const Routines = ({
                     <p>goal: { routine.goal }</p>
                     <p>User: { routine.creatorName }</p>
                     <ol> Activities
-                        <li>{routine.activities.name}</li>
+                        <li>{
+                            routine.activities.map((activity) => {
+                                return (
+                                    <div>
+                                        <h5>{activity.name}</h5>
+                                        <p>Info: {activity.description}</p>
+                                        <p>Count: {activity.count}</p>
+                                    </div>
+                                )
+                            }
+                            )
+                            }</li>
                     </ol>
                     </div>
                 )
