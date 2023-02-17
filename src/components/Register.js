@@ -12,7 +12,7 @@ const Register = ({
 
     return (<div id='login'>
 
-        <form
+        <form id="loginForm"
             onSubmit={
                 async (event) => {
                     event.preventDefault()

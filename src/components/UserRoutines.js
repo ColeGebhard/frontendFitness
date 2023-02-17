@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getRoutines } from "./api/requests";
 
-const Routines = ({
+const UserRoutines = ({
     routines,
     setRoutines,
     token,
+    currentUser
 }) => {
 
     useEffect(() => {
@@ -19,7 +20,7 @@ const Routines = ({
 
     console.log(routines)
 
-    return (
+    return ( 
         <div>
         {
             routines.map((routine) => {
@@ -50,9 +51,10 @@ const Routines = ({
                 )
             })
         }
-        </div>
+        </div> 
+
     )
 
 }
 
-export default Routines;
+export default UserRoutines;

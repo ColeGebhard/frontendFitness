@@ -8,7 +8,8 @@ import {
   Header,
   Login,
   NotFound,
-  Routines
+  Routines,
+  UserRoutines
 } from './components'
 import Register from './components/Register';
 import Welcome from './components/Welcome';
@@ -80,8 +81,8 @@ const App = () => {
             />
           </Route>
           <Route exact path={'/register'}>
-            <Register 
-            setToken={setTokenHere}/>
+            <Register
+              setToken={setTokenHere} />
           </Route>
           <Route component={NotFound} />
         </Switch>
@@ -89,22 +90,37 @@ const App = () => {
     )
   };
   if (token) {
-    return (
+    return (me ?
       <div>
+        <Header 
+        token={token} 
+        logout={logout} 
+        currentUser={me.username} />
         <Switch>
           <Route exact path={'/'}>
-            <Header token={token} logout={logout}/>
             <Welcome />
           </Route>
           <Route exact path={'/routines'}>
-            <Routines 
-            routines={routines}
-            setRoutines={setRoutines}
-            token={token}
+            <Routines
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+              currentUser={me.username}
             />
+          </Route>
+          <Route exact path={'/userroutines'}>
+             <UserRoutines 
+                           routines={routines}
+                           setRoutines={setRoutines}
+                           token={token}
+                           currentUser={me.username}
+             />
           </Route>
           <Route component={NotFound} />
         </Switch>
+      </div> :
+      <div>
+        <h1>Loading...</h1>
       </div>
     )
   }
