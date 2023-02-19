@@ -22,9 +22,10 @@ export const register = async (username, password) => {
         console.log(data)
         return data;
 
-    } catch (error) {
-        console.error(error)
-    }
+    } catch ({error, message}) {
+        window.alert('error')
+            console.error(error)
+       }
 
 }
 

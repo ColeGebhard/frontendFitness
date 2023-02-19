@@ -31,7 +31,7 @@ const Routines = ({
                     <p>Name: { routine.name }</p>
                     <p>Goal: { routine.goal }</p>
                     <p>User: { routine.creatorName }</p>
-                    <ul > Activities
+                    <ul > Activities:
                         <li  className="routineActivityCards">{
                             routine.activities.map((activity) => {
                                 return (

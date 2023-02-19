@@ -157,15 +157,20 @@ body {
 
 .routineActivityCards {
     display: flex;
-    background-color: #06b;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    background-color: #592D1D;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border: #205E61 solid 1px;
+
+
 }
 
 .routineActivityCard {
     display: flex;
-    background-color: #592D1D;
+    background-color: #D9A679;
+    padding: 10px;
+    border: #205E61 solid 1px;
+    margin: 10px;
 }
 
 ul {
@@ -239,3 +244,5 @@ ul {
 }
 
 /* User Routine buttons */
+
+

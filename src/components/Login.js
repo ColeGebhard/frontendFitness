@@ -32,8 +32,10 @@ const Login = ({
                             window.location.href = ('/#/')
                         } else {
                             setUser(false)
+                            window.alert('Invalid Credentials')
                         }
-                   } catch (error) {
+                   } catch ({error, message}) {
+                    window.alert('error')
                         console.error(error)
                    }
 
