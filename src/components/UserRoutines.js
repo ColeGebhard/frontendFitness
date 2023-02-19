@@ -27,7 +27,7 @@ const UserRoutines = ({
             <h3>Hello {currentUser}</h3>
             <h5>Your list of routines, either start or make a new one</h5>
 
-            <button>Click here to make a Routine</button>
+            <Link to={'userroutines/makeroutine'}>Click here to make Routine</Link>
             {
                 routines.map((routine) => {
 
@@ -55,7 +55,7 @@ const UserRoutines = ({
                                         )
                                     }</li>
                                 </ul>
-                                <Link id='startRoutine' to={`/posts/${routine.id}`}>Start Routine</Link>
+                                <Link id='startRoutine' to={`/routines/${routine.id}`}>Start Routine</Link>
                             </div>
                         )
                     } else {

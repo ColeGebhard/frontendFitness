@@ -100,3 +100,27 @@ export const getActivities = async () => {
       console.error(error);
     }
   };
+
+export const makeRoutine = async (name, goal, token) => {
+    try {
+        const resp = await fetch(`${URL}routines`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name,
+                goal
+                
+            })
+        });
+
+        const data = await resp.json();
+
+        console.log(data)
+        return data;
+    } catch (e) {
+        console.error(e)
+    }
+}

@@ -10,10 +10,12 @@ import {
   NotFound,
   Routines,
   UserRoutines,
-  SingleRoutine
+  SingleRoutine,
+  Activities
 } from './components'
 import Register from './components/Register';
 import Welcome from './components/Welcome';
+import MakeRoutine from './components/MakeRoutine';
 
 
 const App = () => {
@@ -116,6 +118,11 @@ const App = () => {
                            currentUser={me.username}
              />
           </Route>
+          <Route path={'/userroutines/makeroutine'}>
+              <MakeRoutine 
+              token={token}
+              />
+             </Route>
           <Route path='/routines/:routineID'>
             <SingleRoutine
               routines={routines}
@@ -123,6 +130,9 @@ const App = () => {
               token={token}
             />
             </Route>
+            <Route exact path={'/activities'}>
+            <Activities />
+          </Route>
           <Route component={NotFound} />
         </Switch>
       </div> :

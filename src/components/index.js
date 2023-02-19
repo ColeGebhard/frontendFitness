@@ -7,6 +7,7 @@ export { default as Activities } from './Activities.js';
 export { default as Profile } from './Profile.js';
 export { default as UserRoutines } from './UserRoutines.js';
 export { default as SingleRoutine } from './SingleRoutine.js';
+export { default as MakeRoutine } from './MakeRoutine.js'
 
 
 
