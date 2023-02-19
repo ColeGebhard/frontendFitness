@@ -1,31 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getRoutines } from "./api/requests";
 
-const Routines = ({ routines }) => {
-  return (
-    <div>
-      {routines.map((routine) => {
-        const { description, count, duration } = routine;
-        return (
-          <div key={id}>
-            <h3>{title}</h3>
-            <p>Description: {description}</p>
-            <p>Count: {count}</p>
-            <p>Duration: {duration}</p>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
+const Routines = ({
+    routines,
+    setRoutines,
+    token,
+    currentUser
+}) => {
 
-async function deleteActivity(activity_id) {
-  const tokens = localStorage.getItem("token");
+    useEffect(() => {
+        getRoutines()
+        .then((routines) => {
+            setRoutines(routines);
+        })
+        .catch((e) => {
+            console.error('Failed to get routines')
+        });
+    }, [ setRoutines ])
 
-  const erase = await deleteActivity(tokens, activity_id);
+    console.log(routines)
 
-  navigate("/Profile");
+    return (
+        <div>
+        {
+            routines.map((routine) => {
+                return (
+                    <div className="routineCard">
+                    <h3>Routines</h3>
+                    <p>Name: { routine.name }</p>
+                    <p>goal: { routine.goal }</p>
+                    <p>User: { routine.creatorName }</p>
+                    <ul > Activities
+                        <li  className="routineActivityCard">{
+                            routine.activities.map((activity) => {
+                                return (
+                                    <div>
+                                        <ul>
+                                        <h5>{activity.name}</h5>
+                                        <p>Info: {activity.description}</p>
+                                        <p>Count: {activity.count}</p>
+                                        <p>Duration: {activity.duration}</p>
+                                        </ul>
+                                    </div>
+                                )
+                            }
+                            )
+                            }</li>
+                    </ul>
+                    </div>
+                )
+            })
+        }
+        </div>
+    )
 
-  return erase;
 }
 
 export default Routines;
