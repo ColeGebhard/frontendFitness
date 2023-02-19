@@ -21,7 +21,7 @@ const Header = ({
                 <Link to={'/'}>My Routines</Link>
                 <Link to={'/activities'}>Activities</Link>
                 <form id='userformset' onSubmit={logout}>
-                    <button type='submit'>Log Out</button>
+                    <button id='logOutButton' type='submit'>Log Out</button>
                 </form>
             </header>
         )
