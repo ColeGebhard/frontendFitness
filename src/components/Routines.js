@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { getRoutines } from "./api/requests";
 
 const Routines = ({
@@ -46,6 +47,7 @@ const Routines = ({
                             )
                             }</li>
                     </ul>
+                    <Link id='startRoutine' to={`/routines/${routine.id}`}>Start Routine</Link>
                     </div>
                 )
             })

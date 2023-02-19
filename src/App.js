@@ -9,7 +9,8 @@ import {
   Login,
   NotFound,
   Routines,
-  UserRoutines
+  UserRoutines,
+  SingleRoutine
 } from './components'
 import Register from './components/Register';
 import Welcome from './components/Welcome';
@@ -19,7 +20,6 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [routines, setRoutines] = useState([]);
-  const [activities, setActivites] = useState([])
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [me, setMe] = useState('');
@@ -116,6 +116,13 @@ const App = () => {
                            currentUser={me.username}
              />
           </Route>
+          <Route path='/routines/:routineID'>
+            <SingleRoutine
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+            />
+            </Route>
           <Route component={NotFound} />
         </Switch>
       </div> :

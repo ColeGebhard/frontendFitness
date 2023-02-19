@@ -1,28 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getActivities } from "./api/requests.js";
 
-const Activities = ({ activities }) => {
-   
-    return (
-        <div>
+
+  const Activities = () => {
+    const [activities, setActivities] = useState([])
+    
+    useEffect(() => {
+        getActivities()
+        .then((activities) => {
+            setActivities(activities);
+        })
+        .catch((e) => {
+            console.error('Failed to get activites')
+        });
+    }, [ setActivities ]);
+
+    console.log(activities)
+
+return (
+    
+    <div className="activityCardContainer">
+
+        <h1>Activities</h1>
         {
             activities.map((activity) => {
-                const { description, count, duration } = activity;
                 return (
-                    <div>
-                    <h3></h3>
-                    <p>Description: { description }</p>
-                    <p>Count: { count }</p>
-                    <p>Duration: { duration }</p>
+                    <div class="card-body" className="activityCard">
+                    <h3 class="card-title" >Activity: { activity.name }</h3>
+                    {/* <p>Name: { activity.name }</p> */}
+                    <p>Description: { activity.description }</p>
+
                     </div>
                 )
             })
         }
-        </div>
-    )
-
-    
-}
+        
+    </div>
 
 
+)}
 
 export default Activities;

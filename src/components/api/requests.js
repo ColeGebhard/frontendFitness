@@ -85,3 +85,18 @@ export const getRoutines = async () => {
         console.erro()
     }
 } 
+
+export const getActivities = async () => {
+    try {
+      const resp = await fetch(`${URL}activities`, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+  
+      const data = await resp.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
