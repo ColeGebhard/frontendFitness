@@ -121,8 +121,7 @@ export const makeRoutine = async ({name, goal, isPublic}, token) => {
 
         console.log(data)
 
-        return data;
-    } catch (e) {
-        console.error(e)
+    } catch (error) {
+        console.error(error)
     }
 }

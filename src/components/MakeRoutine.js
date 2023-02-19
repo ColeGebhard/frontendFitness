@@ -21,7 +21,7 @@ const MakeRoutine = ({
 
     const [name, setName] = useState('');
     const [goal, setGoal] = useState('');
-    const [isPublic, setIsPublic] = useState(false);
+    const [isPublic, setIsPublic] = useState(null);
 
     const handleChange = () => {
         setIsPublic(!isPublic);
@@ -31,34 +31,19 @@ const MakeRoutine = ({
         event.preventDefault();
 
         try {
-            const routine = await makeRoutine({name, goal, isPublic}, token)
+            await makeRoutine({name, goal, isPublic}, token)
 
-            if (routine) {
-                console.log(routine)
-                console.log('routine', routine);
-                routines.push(routine)
-                setName('');
-                setGoal('');
-
-                window.location.reload();
-                window.alert(`Succesfuly made routine about ${name}`)
-            }
-            else {
-                console.log('Failed to make post')
-                window.alert('Missing required fields')
-            }
-
-
-
-
-            console.log(routine)
-
-            window.alert('Made Routines')
+            // window.alert(`Succesfuly made routine about ${name}`)
 
         }
-        catch (e) {
-            console.error('Failed to make post', e)
+        catch (error) {
             window.alert('Missing required fields')
+            console.error('Failed to make post', error)
+            window.alert('Missing required fields')
+        } finally {
+            setName('');
+            setGoal('');
+            // window.location.reload();
         }
 
     }
@@ -66,7 +51,7 @@ const MakeRoutine = ({
 
     return (<div id='listing'>
         <h2>
-            Make A Post
+            Make A Routine
         </h2>
         <form id='listingForm'
             onSubmit={

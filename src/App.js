@@ -44,7 +44,8 @@ const App = () => {
 
     setToken('');
     setMe(null);
-    window.alert('Log out success')
+    window.location.replace('http://localhost:3000/#/');
+    window.alert('Log out success');
   }, [token]);
 
   useEffect(() => {
