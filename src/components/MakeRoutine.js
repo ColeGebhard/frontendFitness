@@ -31,9 +31,19 @@ const MakeRoutine = ({
         event.preventDefault();
 
         try {
-            await makeRoutine({name, goal, isPublic}, token)
+            const routine = await makeRoutine({name, goal, isPublic}, token)
 
-            // window.alert(`Succesfuly made routine about ${name}`)
+            if (!name || !goal){
+                window.alert('Missing required field');
+            }
+            else if (routine){
+                window.alert(`Routine with name: ${name} made succesfully`);
+            }
+            else {
+                window.alert(`Routine with name: ${name} already exists`);
+            }
+
+
 
         }
         catch (error) {
@@ -59,9 +69,9 @@ const MakeRoutine = ({
             }
         >
             <label>
-                Title*
+                Name*
                 <textarea id='postInput'
-                    placeholder="Title"
+                    placeholder="Name"
                     value={name}
                     onChange={(event) => {
                         setName(event.target.value)
@@ -69,9 +79,9 @@ const MakeRoutine = ({
                 />
             </label>
             <label>
-                Description*
+                Goal*
                 <textarea id='postTextarea'
-                    placeholder="Description"
+                    placeholder="Goal"
                     value={goal}
                     onChange={(event) => {
                         setGoal(event.target.value)
@@ -80,7 +90,7 @@ const MakeRoutine = ({
             </label>
 
             <label>
-                public
+                Public?
                 <input type="checkbox"
                     checked={isPublic}
                     onChange={handleChange} />

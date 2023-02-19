@@ -27,7 +27,7 @@ const Register = ({
                         } else if (!response){
                             window.alert(`Could not log in, Username: ${username} already exists`)
                         } else if(password.length<8){
-                            window.alert('Password too short')
+                            window.alert('Password too short!')
                         }
                     } catch ({error, message}) {
                         console.error(error)
