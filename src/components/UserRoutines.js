@@ -6,7 +6,8 @@ const UserRoutines = ({
     routines,
     setRoutines,
     token,
-    currentUser
+    currentUser,
+    userId
 }) => {
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const UserRoutines = ({
             {
                 routines.map((routine) => {
 
-                    if (currentUser === routine.creatorName) {
+                    if (userId === routine.creatorId) {
                         return (
                             <div className="routineCard">
                                 <h3>Routines</h3>

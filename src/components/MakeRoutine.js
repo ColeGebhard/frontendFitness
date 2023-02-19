@@ -1,28 +1,60 @@
-import React, { useState } from "react";
-import { makeRoutine } from "./api/requests";
+import React, { useState, useEffect } from "react";
+import { makeRoutine, getRoutines } from "./api/requests";
 const MakeRoutine = ({
     token,
-    routines
+    routines,
+    setRoutines
 }) => {
 
+    useEffect(() => {
+        getRoutines()
+            .then((routines) => {
+                setRoutines(routines);
+            })
+            .catch((e) => {
+                console.error('Failed to get routines')
+            });
+    }, [setRoutines])
+
     console.log(token)
+    console.log(routines)
 
     const [name, setName] = useState('');
     const [goal, setGoal] = useState('');
-    const [isPublic, setIsPublic] = useState(null);
+    const [isPublic, setIsPublic] = useState(false);
+
+    const handleChange = () => {
+        setIsPublic(!isPublic);
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-
         try {
-            const response = await makeRoutine(name, goal, token)
+            const routine = await makeRoutine({name, goal, isPublic}, token)
 
-            console.log(response)
-            
+            if (routine) {
+                console.log(routine)
+                console.log('routine', routine);
+                routines.push(routine)
+                setName('');
+                setGoal('');
+
+                window.location.reload();
+                window.alert(`Succesfuly made routine about ${name}`)
+            }
+            else {
+                console.log('Failed to make post')
+                window.alert('Missing required fields')
+            }
+
+
+
+
+            console.log(routine)
+
             window.alert('Made Routines')
 
-            return response
         }
         catch (e) {
             console.error('Failed to make post', e)
@@ -60,6 +92,13 @@ const MakeRoutine = ({
                         setGoal(event.target.value)
                     }}
                 />
+            </label>
+
+            <label>
+                public
+                <input type="checkbox"
+                    checked={isPublic}
+                    onChange={handleChange} />
             </label>
 
             <button id='button' type="submit">Make Routine</button>

@@ -101,7 +101,7 @@ export const getActivities = async () => {
     }
   };
 
-export const makeRoutine = async (name, goal, token) => {
+export const makeRoutine = async ({name, goal, isPublic}, token) => {
     try {
         const resp = await fetch(`${URL}routines`, {
             method: "POST",
@@ -111,7 +111,8 @@ export const makeRoutine = async (name, goal, token) => {
             },
             body: JSON.stringify({
                 name,
-                goal
+                goal,
+                isPublic
                 
             })
         });
@@ -119,6 +120,7 @@ export const makeRoutine = async (name, goal, token) => {
         const data = await resp.json();
 
         console.log(data)
+
         return data;
     } catch (e) {
         console.error(e)

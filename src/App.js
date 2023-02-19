@@ -94,10 +94,10 @@ const App = () => {
   if (token) {
     return (me ?
       <div>
-        <Header 
-        token={token} 
-        logout={logout} 
-        currentUser={me.username} />
+        <Header
+          token={token}
+          logout={logout}
+          currentUser={me.username} />
         <Switch>
           <Route exact path={'/'}>
             <Welcome />
@@ -111,26 +111,29 @@ const App = () => {
             />
           </Route>
           <Route exact path={'/userroutines'}>
-             <UserRoutines 
-                           routines={routines}
-                           setRoutines={setRoutines}
-                           token={token}
-                           currentUser={me.username}
-             />
+            <UserRoutines
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+              currentUser={me.username}
+              userId={me.id}
+            />
           </Route>
           <Route path={'/userroutines/makeroutine'}>
-              <MakeRoutine 
+            <MakeRoutine
               token={token}
-              />
-             </Route>
+              routines={routines}
+              setRoutines={setRoutines}
+            />
+          </Route>
           <Route path='/routines/:routineID'>
             <SingleRoutine
               routines={routines}
               setRoutines={setRoutines}
               token={token}
             />
-            </Route>
-            <Route exact path={'/activities'}>
+          </Route>
+          <Route exact path={'/activities'}>
             <Activities />
           </Route>
           <Route component={NotFound} />
