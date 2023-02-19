@@ -21,14 +21,15 @@ const Routines = ({
     console.log(routines)
 
     return (
-        <div>
+        <div className="activityCardContainer">
+                    <h1>Routines</h1>
+
         {
             routines.map((routine) => {
                 return (
-                    <div className="routineCard">
-                    <h3>Routines</h3>
+                    <div class="card-body" className="activityCard">
                     <p>Name: { routine.name }</p>
-                    <p>goal: { routine.goal }</p>
+                    <p>Goal: { routine.goal }</p>
                     <p>User: { routine.creatorName }</p>
                     <ul > Activities
                         <li  className="routineActivityCards">{

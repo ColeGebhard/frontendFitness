@@ -45,6 +45,7 @@ const App = () => {
     setToken('');
     setMe(null);
     window.location.replace('http://localhost:3000/#/');
+    window.location.reload();
     window.alert('Log out success');
   }, [token]);
 
@@ -67,10 +68,21 @@ const App = () => {
   if (!token) {
     return (
       <div>
+        <Header
+          token={token}
+          logout={logout}
+          currentUser={me.username} />
         <Switch>
           <Route exact path={'/'}>
-            <Header />
             <Welcome />
+          </Route>
+          <Route exact path={'/routines'}>
+            <Routines
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+              currentUser={me.username}
+            />
           </Route>
           <Route exact path={'/login'}>
             <Login
