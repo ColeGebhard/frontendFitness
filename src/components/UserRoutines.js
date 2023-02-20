@@ -25,14 +25,15 @@ const UserRoutines = ({
 
     return (
         <div>
+            <div id="userWelcome">
             <h3>Hello {currentUser}</h3>
             <h5>Your list of routines, either start or make a new one</h5>
-            <div className="buttonForm">
+            </div>
+            <div className="userButtonForm">
                 <Link to={'userroutines/makeroutine'}>Make Routine</Link>
-                <Link to={'userroutines/makeroutine'}>Edit routines</Link>
             </div>
             <div className="activityCardContainer">
-                                <h1>Routines</h1>
+                                <h1>My Routines</h1>
                                 </div>
             {
                 routines.map((routine) => {
@@ -42,11 +43,14 @@ const UserRoutines = ({
                         return (
 
                                 <div class="card-body" className="activityCard">
+                                    <div id="cardEditAndDelete">
+                                    <Link to={`/userroutines/${routine.id}`}>Edit Eoutine</Link>
+                                    </div>
 
                                     <p>Name: {routine.name}</p>
                                     <p>Goal: {routine.goal}</p>
                                     <p>User: {routine.creatorName}</p>
-                                    <ul > Activities
+                                    <ul> Activities
                                         <li className="routineActivityCards">{
                                             routine.activities.map((activity) => {
                                                 return (

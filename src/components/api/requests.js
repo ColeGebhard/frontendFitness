@@ -100,27 +100,3 @@ export const getActivities = async () => {
   }
 };
 
-export const makeRoutine = async ({name, goal, isPublic}, token) => {
-  try {
-      const resp = await fetch(`${URL}routines`, {
-          method: "POST",
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify({
-              name,
-              goal,
-              isPublic
-              
-          })
-      });
-
-      const data = await resp.json();
-
-      console.log(data)
-
-  } catch (error) {
-      console.error(error)
-  }
-}

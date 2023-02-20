@@ -23,36 +23,22 @@ const SingleRoutine = ({
 
 
     const { routineID } = useParams();
-
-    // return (
-    //     <div>{
-    //         routines.map((routine) => {
-
-
-    //             if (routineID === JSON.stringify(routine.id)) {
-    //                 console.log(routine.id)
-    //                 console.log(routineID)
-    //                 return (
-    //                     <h1>It works</h1>
-    //                 )
-    //             }
-    //         })}
-    //     </div>
-    // )
-
+    
     const [currentPost] = routines.filter(routine => JSON.stringify(routine.id) === routineID);
 
-        console.log(currentPost)
+    console.log(currentPost)
 
     const { name, goal, activities} = currentPost;
 
 
     return (
         <div id='cardcontainer'>
-            <div id='displaycard'>
+            <div id='userWelcome'>
+                
                 <h3>{name}</h3>
                 <p>{goal}</p>
-                <ul > Activities
+                </div>
+                <ul > 
                         <li  className="routineActivityCards">{
                             activities.map((activity) => {
                                 return (
@@ -70,7 +56,6 @@ const SingleRoutine = ({
                             }</li>
                     </ul>
             </div>
-        </div>
     )
 }
 

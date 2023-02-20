@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { makeRoutine, getRoutines } from "./api/requests";
-const MakeRoutine = ({
+import React, { useState, useEffect} from "react";
+import { useParams } from 'react-router-dom';
+
+import { editRoutine, getRoutines } from "./api/requests";
+const EditRoutine = ({
     token,
     routines,
     setRoutines
@@ -31,18 +33,26 @@ const MakeRoutine = ({
         event.preventDefault();
 
         try {
-            const routine = await makeRoutine({name, goal, isPublic}, token)
+            const routine = await editRoutine({name, goal, isPublic}, token, routineID)
             
             console.log(routine)
 
-            if (!name || !goal){
-                window.alert('Missing required field');
-            }
-            else if (routine){
-                window.alert(`Routine with name: ${name} made succesfully`);
-            }
-            else if (!routine){
-                window.alert(`Routine with name: ${name} already exists`);
+            if (routine) {
+                const newPosts = routines.map(routine => {
+                    if (routine.creatorId === routineID) {
+                        return routine;
+                    }
+                    else {
+                        return routines;
+                    }
+                });
+                setRoutines(newPosts);
+  
+                window.location.replace('http://localhost:3000/#/userroutines');
+                window.location.reload();
+            } else {
+                console.log('Failed to edit routine')
+                window.alert('Must change required fields to edit')
             }
 
         }
@@ -50,28 +60,32 @@ const MakeRoutine = ({
             window.alert('Missing required fields')
             console.error('Failed to make post', error)
             window.alert('Missing required fields')
-        } finally {
-            setName('');
-            setGoal('');
-            // window.location.reload();
         }
 
     }
 
+    const { routineID } = useParams();
+
+    const [currentPost] = routines.filter(routine => JSON.stringify(routine.id) === routineID);
+
+
 
     return (<div id='listing'>
         <h2>
-            Make A Routine
+            Edit A Routine
         </h2>
+        <h5>
+            *Please empty field to see past
+        </h5>
         <form id='listingForm'
             onSubmit={
                 handleSubmit
             }
         ><div id='routineText'>
             <label>
-                Name*
+                Name:
                 <input id='postInput'
-                    placeholder="Name"
+                    placeholder={currentPost.name}
                     value={name}
                     onChange={(event) => {
                         setName(event.target.value)
@@ -79,9 +93,9 @@ const MakeRoutine = ({
                 />
             </label>
             <label>
-                Goal*
+                Goal:
                 <textarea id='postTextarea'
-                    placeholder="Goal"
+                    placeholder={currentPost.goal}
                     value={goal}
                     onChange={(event) => {
                         setGoal(event.target.value)
@@ -97,9 +111,9 @@ const MakeRoutine = ({
                     onChange={handleChange} />
             </label>
 
-            <button id='button' type="submit">Make Routine</button>
+            <button id='button' type="submit">Edit Routine</button>
         </form>
     </div>)
 }
 
-export default MakeRoutine;
+export default EditRoutine;
