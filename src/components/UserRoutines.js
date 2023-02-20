@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { deleteRoutine, getRoutines } from "./api/requests";
+import AddActivity from './AddActivity'
 
 const UserRoutines = ({
     routines,
@@ -45,7 +46,7 @@ const UserRoutines = ({
                                 <div class="card-body" className="activityCard">
                                     <div id="cardEditAndDelete">
                                     <Link to={`/userroutines/${routine.id}`}>Edit Routine</Link>
-                                    <button onClick={() => {
+                                    <button id="deleteButton" onClick={() => {
                                             deleteRoutine(token, routine.id).then(()=>window.location.reload())
                                     }}>Delete Routine</button>
                                     </div>
@@ -54,6 +55,11 @@ const UserRoutines = ({
                                     <p>Goal: {routine.goal}</p>
                                     <p>User: {routine.creatorName}</p>
                                     <ul> Activities
+                                        <button id="addActivitys" onClick={() => {
+                                            <AddActivity 
+                                            routines={routines}
+                                            token={token}/>
+                                        }}>Add Activity</button>
                                         <li className="routineActivityCards">{
                                             routine.activities.map((activity) => {
                                                 return (
