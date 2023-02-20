@@ -223,6 +223,23 @@ a:hover {
     margin: 10px;
 }
 
+#cardEditAndDelete{
+    display: flex;
+    justify-content: space-between;
+}
+
+#deleteButton {
+    background-color: #151922;
+    color: #eee;
+    border: none;
+    padding:3px 6px;
+    font-size: 10px;
+    border-radius: 5px;
+}
+
+#deleteButton:hover {
+    background-color: red;
+}
 
 
 ul {
