@@ -11,11 +11,12 @@ import {
   Routines,
   UserRoutines,
   SingleRoutine,
-  Activities
+  Activities,
+  MakeRoutine,
+  EditRoutine
 } from './components'
 import Register from './components/Register';
 import Welcome from './components/Welcome';
-import MakeRoutine from './components/MakeRoutine';
 
 
 const App = () => {
@@ -134,6 +135,13 @@ const App = () => {
           </Route>
           <Route path={'/userroutines/makeroutine'}>
             <MakeRoutine
+              token={token}
+              routines={routines}
+              setRoutines={setRoutines}
+            />
+          </Route>
+          <Route path={'/userroutines/:routineID'}>
+            <EditRoutine
               token={token}
               routines={routines}
               setRoutines={setRoutines}

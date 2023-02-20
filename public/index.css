@@ -127,27 +127,54 @@ body {
     max-height: 5rem;
 }
 
-#logginInHeader{
+.userButtonForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20vw;
+    background-color: #D9A679;
+}
+
+#logginInHeader {
     display: flex;
     background-color: #D9A679;
     font-size: 30px;
     justify-content: space-between;
 }
 
+#userformset {
+    font-size: 15px;
+}
+/* Links */
+a {
+    color: #205E61;
+    text-shadow: 2px 0px #eee;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    padding:5px;
+    font-size: 20px;
+}
+
+a:hover {
+    color: #eee;
+    text-shadow: 2px 0px #205E61;
+    text-decoration: none;
+    background-color: #592D1D ;
+}
+
 #logOutButton {
     background-color: #205E61;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 15px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     margin: 4px 2px;
     cursor: pointer;
 }
 
-.routineCard{
+.routineCard {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -180,7 +207,7 @@ ul {
 /* Home Page ------------------------------------------- */
 /* Welcome Message Container */
 #welcome {
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -223,13 +250,13 @@ ul {
 
 /* Activity Card Header */
 .activityCard h3 {
-    color:  #205E61;
+    color: #205E61;
     text-align: center;
     margin-bottom: .5em;
 }
 
 /* Background Containing Activity Cards */
-.activityCardContainer{
+.activityCardContainer {
     display: flex;
     flex-direction: column;
 }
@@ -243,7 +270,16 @@ ul {
     text-align: center;
 }
 
-/* User Routine buttons */
+/* User Routine page */
+
+#userWelcome {
+    display: flex;
+    background-color: #205E61;
+    color:#eee;
+    flex-direction: column;
+    align-items: center;
+    padding:10px;
+}
 
 #listingEdit h2 {
     color: #eee;
@@ -254,7 +290,7 @@ ul {
 
 #listing {
     margin-top: 15px;
-    
+
     display: flex;
     flex-direction: column;
     width: 50vw;
@@ -268,7 +304,7 @@ ul {
     margin-left: 10%;
 
 
-    
+
 }
 
 #listing h2 {
@@ -284,10 +320,17 @@ ul {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 #listingForm label {
     color: #eee;
 }
 
+#routineText {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-content: flex-start;
+}
