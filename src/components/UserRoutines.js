@@ -31,10 +31,9 @@ const UserRoutines = ({
             </div>
             <div className="userButtonForm">
                 <Link to={'userroutines/makeroutine'}>Make Routine</Link>
-                <Link to={'userroutines/editroutine'}>Edit routines</Link>
             </div>
             <div className="activityCardContainer">
-                                <h1>Routines</h1>
+                                <h1>My Routines</h1>
                                 </div>
             {
                 routines.map((routine) => {
@@ -44,7 +43,9 @@ const UserRoutines = ({
                         return (
 
                                 <div class="card-body" className="activityCard">
+                                    <div id="cardEditAndDelete">
                                     <Link to={`/userroutines/${routine.id}`}>Edit Eoutine</Link>
+                                    </div>
 
                                     <p>Name: {routine.name}</p>
                                     <p>Goal: {routine.goal}</p>

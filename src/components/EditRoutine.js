@@ -48,7 +48,7 @@ const EditRoutine = ({
                 });
                 setRoutines(newPosts);
   
-                window.location.replace('http://localhost:3000/#/');
+                window.location.replace('http://localhost:3000/#/userroutines');
                 window.location.reload();
             } else {
                 console.log('Failed to edit routine')
@@ -60,10 +60,6 @@ const EditRoutine = ({
             window.alert('Missing required fields')
             console.error('Failed to make post', error)
             window.alert('Missing required fields')
-        } finally {
-            setName('');
-            setGoal('');
-            window.history.back();
         }
 
     }
