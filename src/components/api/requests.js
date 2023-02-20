@@ -100,3 +100,77 @@ export const getActivities = async () => {
   }
 };
 
+export const makeRoutine = async ({name, goal, isPublic}, token) => {
+    try {
+        const resp = await fetch(`${URL}routines`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name,
+                goal,
+                isPublic
+                
+            })
+        });
+
+        const data = await resp.json();
+
+        console.log(data)
+
+        return data
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const editRoutine = async ({name, goal, isPublic}, token, routineID) => {
+    try {
+        const resp = await fetch(`${URL}routines/${routineID}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name,
+                goal,
+                isPublic
+                
+            })
+        });
+
+        const data = await resp.json();
+
+        console.log(data)
+
+        return data;
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const deleteRoutine = async (token, routineID) => {
+    try {
+        const resp = await fetch(`${URL}routines/${routineID}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        const data = await resp.json();
+
+        console.log(data);
+
+        return data;
+
+    } catch (error) {
+        console.error(error)
+    }
+};
