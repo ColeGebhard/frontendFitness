@@ -20,66 +20,54 @@ export const register = async (username, password) => {
     const data = resp.json();
     console.log(data);
     return data;
-  } catch (error) {
-    console.error(error);
-  }
+
+    } catch ({error, message}) {
+        window.alert('error')
+            console.error(error)
+       }
 };
 
 export const login = async (username, password) => {
-  try {
-    const resp = await fetch(`${URL}users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
-    const data = await resp.json();
-    console.log(data.token);
-    localStorage.setItem("token", data.token);
 
-    return data;
+  try {
+      const resp = await fetch(`${URL}users/login`, {
+          method: "POST",
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              username,
+              password
+          })
+      })
+      const data = await resp.json()
+      
+      return data
   } catch (error) {
-    console.error(error);
+      console.error(error)
   }
-};
+}
 
 export const isUser = async (token) => {
+
   try {
-    const resp = await fetch(`${URL}users/me`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
 
-    const data = await resp.json();
-    if (data.username) {
-      return data;
-    }
-    return false;
+      const resp = await fetch(`${URL}users/me`, {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+      });
+
+      const data = await resp.json();
+      if(data.username){
+      return data
+      }
+      return false
   } catch (error) {
-    console.error(error);
+      console.error(error)
   }
-};
-
-export const getActivities = async () => {
-  try {
-    const resp = await fetch(`${URL}activities`, {
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
-
-    const data = await resp.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-};
+}
 
 export const getRoutines = async () => {
   try {
@@ -96,3 +84,43 @@ export const getRoutines = async () => {
       console.erro()
   }
 } 
+
+export const getActivities = async () => {
+  try {
+    const resp = await fetch(`${URL}activities`, {
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+
+    const data = await resp.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const makeRoutine = async ({name, goal, isPublic}, token) => {
+  try {
+      const resp = await fetch(`${URL}routines`, {
+          method: "POST",
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+              name,
+              goal,
+              isPublic
+              
+          })
+      });
+
+      const data = await resp.json();
+
+      console.log(data)
+
+  } catch (error) {
+      console.error(error)
+  }
+}

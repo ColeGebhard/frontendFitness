@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { getRoutines } from "./api/requests";
 
 const Routines = ({
     routines,
     setRoutines,
     token,
-    currentUser
 }) => {
 
     useEffect(() => {
@@ -21,20 +21,21 @@ const Routines = ({
     console.log(routines)
 
     return (
-        <div>
+        <div className="activityCardContainer">
+                    <h1>Routines</h1>
+
         {
             routines.map((routine) => {
                 return (
-                    <div className="routineCard">
-                    <h3>Routines</h3>
+                    <div class="card-body" className="activityCard">
                     <p>Name: { routine.name }</p>
-                    <p>goal: { routine.goal }</p>
+                    <p>Goal: { routine.goal }</p>
                     <p>User: { routine.creatorName }</p>
-                    <ul > Activities
-                        <li  className="routineActivityCard">{
+                    <ul > Activities:
+                        <li  className="routineActivityCards">{
                             routine.activities.map((activity) => {
                                 return (
-                                    <div>
+                                    <div className="routineActivityCard">
                                         <ul>
                                         <h5>{activity.name}</h5>
                                         <p>Info: {activity.description}</p>
@@ -47,6 +48,7 @@ const Routines = ({
                             )
                             }</li>
                     </ul>
+                    <Link id='startRoutine' to={`/routines/${routine.id}`}>Start Routine</Link>
                     </div>
                 )
             })

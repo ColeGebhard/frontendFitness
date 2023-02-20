@@ -8,15 +8,20 @@ import {
   Header,
   Login,
   NotFound,
+  Routines,
+  UserRoutines,
+  SingleRoutine,
   Activities
 } from './components'
 import Register from './components/Register';
 import Welcome from './components/Welcome';
+import MakeRoutine from './components/MakeRoutine';
 
 
 const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [routines, setRoutines] = useState([]);
   const [user, setUser] = useState('');
   const [token, setToken] = useState('');
   const [me, setMe] = useState('');
@@ -39,7 +44,9 @@ const App = () => {
 
     setToken('');
     setMe(null);
-    window.alert('Log out success')
+    window.location.replace('http://localhost:3000/#/');
+    window.location.reload();
+    window.alert('Log out success');
   }, [token]);
 
   useEffect(() => {
@@ -61,10 +68,21 @@ const App = () => {
   if (!token) {
     return (
       <div>
+        <Header
+          token={token}
+          logout={logout}
+          currentUser={me.username} />
         <Switch>
           <Route exact path={'/'}>
-            <Header />
             <Welcome />
+          </Route>
+          <Route exact path={'/routines'}>
+            <Routines
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+              currentUser={me.username}
+            />
           </Route>
           <Route exact path={'/login'}>
             <Login
@@ -78,8 +96,8 @@ const App = () => {
             />
           </Route>
           <Route exact path={'/register'}>
-            <Register 
-            setToken={setTokenHere}/>
+            <Register
+              setToken={setTokenHere} />
           </Route>
           <Route component={NotFound} />
         </Switch>
@@ -87,18 +105,55 @@ const App = () => {
     )
   };
   if (token) {
-    return (
+    return (me ?
       <div>
+        <Header
+          token={token}
+          logout={logout}
+          currentUser={me.username} />
         <Switch>
           <Route exact path={'/'}>
-            <Header token={token} logout={logout}/>
             <Welcome />
+          </Route>
+          <Route exact path={'/routines'}>
+            <Routines
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+              currentUser={me.username}
+            />
+          </Route>
+          <Route exact path={'/userroutines'}>
+            <UserRoutines
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+              currentUser={me.username}
+              userId={me.id}
+            />
+          </Route>
+          <Route path={'/userroutines/makeroutine'}>
+            <MakeRoutine
+              token={token}
+              routines={routines}
+              setRoutines={setRoutines}
+            />
+          </Route>
+          <Route path='/routines/:routineID'>
+            <SingleRoutine
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+            />
           </Route>
           <Route exact path={'/activities'}>
             <Activities />
           </Route>
           <Route component={NotFound} />
         </Switch>
+      </div> :
+      <div>
+        <h1>Loading...</h1>
       </div>
     )
   }
