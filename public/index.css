@@ -118,7 +118,7 @@ body {
 #button:active {
     background-color: #06b;
 }
-
+/* Header ---------------------------------------------- */
 #header {
     display: flex;
     background-color: #D9A679;
@@ -140,6 +140,28 @@ body {
     background-color: #D9A679;
     font-size: 30px;
     justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#headerGreeting {
+    color:#592D1D;
+    font-family: 'Montserrat', sans-serif;
+    padding-right: 20px;
+}
+
+/* Links */
+a {
+    color: #205E61;
+    text-shadow: 2px 0px white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a:hover {
+    color: yellow;
+    text-shadow: 2px 0px blue;
+    text-decoration: none;
 }
 
 #userformset {
@@ -174,7 +196,8 @@ a:hover {
     cursor: pointer;
 }
 
-.routineCard {
+
+
     display: flex;
     justify-content: center;
     flex-direction: column;
