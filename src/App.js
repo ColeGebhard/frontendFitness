@@ -1,26 +1,28 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { TOKEN_STORAGE_KEY } from './const';
-import { isUser } from './components/api/requests';
-
+import React, { useState, useCallback, useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
+import { TOKEN_STORAGE_KEY } from "./const";
+import { isUser } from "./components/api/requests";
 
 import {
   Header,
   Login,
   NotFound,
-  Activities
-} from './components'
-import Register from './components/Register';
-import Welcome from './components/Welcome';
-
+  Routines,
+  UserRoutines,
+  SingleRoutine,
+  Activities,
+} from "./components";
+import Register from "./components/Register";
+import Welcome from "./components/Welcome";
+import MakeRoutine from "./components/MakeRoutine";
 
 const App = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [user, setUser] = useState('');
-  const [token, setToken] = useState('');
-  const [me, setMe] = useState('');
-
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [routines, setRoutines] = useState([]);
+  const [user, setUser] = useState("");
+  const [token, setToken] = useState("");
+  const [me, setMe] = useState("");
 
   const setTokenHere = useCallback((responseToken) => {
     localStorage.setItem(TOKEN_STORAGE_KEY, responseToken);
@@ -29,17 +31,18 @@ const App = () => {
 
   useEffect(() => {
     const storageToken = localStorage.getItem(TOKEN_STORAGE_KEY);
-    setToken(storageToken)
+    setToken(storageToken);
   }, []);
 
   const logout = useCallback(() => {
     localStorage.removeItem(TOKEN_STORAGE_KEY);
     localStorage.removeItem(token);
 
-
-    setToken('');
+    setToken("");
     setMe(null);
-    window.alert('Log out success')
+    window.location.replace("http://localhost:3000/#/");
+    window.location.reload();
+    window.alert("Log out success");
   }, [token]);
 
   useEffect(() => {
@@ -52,21 +55,28 @@ const App = () => {
           throw new Error(`Failed to fetch myself.`);
         });
     }
-
   }, [token]);
 
-  console.log(me)
-  console.log(token)
+  console.log(me);
+  console.log(token);
 
   if (!token) {
     return (
       <div>
+        <Header token={token} logout={logout} currentUser={me.username} />
         <Switch>
-          <Route exact path={'/'}>
-            <Header />
+          <Route exact path={"/"}>
             <Welcome />
           </Route>
-          <Route exact path={'/login'}>
+          <Route exact path={"/routines"}>
+            <Routines
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+              currentUser={me.username}
+            />
+          </Route>
+          <Route exact path={"/login"}>
             <Login
               user={user}
               setUser={setUser}
@@ -77,32 +87,65 @@ const App = () => {
               password={password}
             />
           </Route>
-          <Route exact path={'/register'}>
-            <Register 
-            setToken={setTokenHere}/>
+          <Route exact path={"/register"}>
+            <Register setToken={setTokenHere} />
           </Route>
           <Route component={NotFound} />
         </Switch>
       </div>
-    )
-  };
+    );
+  }
   if (token) {
-    return (
+    return me ? (
       <div>
+        <Header token={token} logout={logout} currentUser={me.username} />
         <Switch>
-          <Route exact path={'/'}>
-            <Header token={token} logout={logout}/>
+          <Route exact path={"/"}>
             <Welcome />
           </Route>
-          <Route exact path={'/activities'}>
+          <Route exact path={"/routines"}>
+            <Routines
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+              currentUser={me.username}
+            />
+          </Route>
+          <Route exact path={"/userroutines"}>
+            <UserRoutines
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+              currentUser={me.username}
+              userId={me.id}
+            />
+          </Route>
+          <Route path={"/userroutines/makeroutine"}>
+            <MakeRoutine
+              token={token}
+              routines={routines}
+              setRoutines={setRoutines}
+            />
+          </Route>
+          <Route path="/routines/:routineID">
+            <SingleRoutine
+              routines={routines}
+              setRoutines={setRoutines}
+              token={token}
+            />
+          </Route>
+          <Route exact path={"/activities"}>
             <Activities />
           </Route>
           <Route component={NotFound} />
         </Switch>
       </div>
-    )
+    ) : (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
   }
 };
-
 
 export default App;

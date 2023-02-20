@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { login } from "./api/requests";
 
 const Login = ({
@@ -14,7 +14,7 @@ const Login = ({
 
     return (<div id='login'>
 
-        <form
+        <form id="loginForm"
             onSubmit={
                 async (event) => {
                     event.preventDefault()
@@ -32,8 +32,10 @@ const Login = ({
                             window.location.href = ('/#/')
                         } else {
                             setUser(false)
+                            window.alert('Invalid Credentials')
                         }
-                   } catch (error) {
+                   } catch ({error, message}) {
+                    window.alert('error')
                         console.error(error)
                    }
 

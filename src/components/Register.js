@@ -12,7 +12,7 @@ const Register = ({
 
     return (<div id='login'>
 
-        <form
+        <form id="loginForm"
             onSubmit={
                 async (event) => {
                     event.preventDefault()
@@ -24,11 +24,14 @@ const Register = ({
 
                         if(response.token){
                         window.location.href = ('/#/')
+                        } else if (!response){
+                            window.alert(`Could not log in, Username: ${username} already exists`)
+                        } else if(password.length<8){
+                            window.alert('Password too short!')
                         }
-                    } catch (error) {
+                    } catch ({error, message}) {
                         console.error(error)
-                        window.alert('Invalid Credentials')
-                    }
+                   }
 
                 }
             }>
