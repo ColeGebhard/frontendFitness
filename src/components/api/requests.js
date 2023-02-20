@@ -124,3 +124,27 @@ export const makeRoutine = async ({name, goal, isPublic}, token) => {
       console.error(error)
   }
 }
+
+// export const editRoutine = async ( activity ) => {
+//   try {
+//       const resp = await fetch(`${URL}routines`, {
+//           method: "DELETE",
+//           headers: {
+//               'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify({
+//               name,
+//               goal,
+//               isPublic
+              
+//           })
+//       });
+
+//       const data = await resp.json();
+
+//       console.log(data)
+
+//   } catch (error) {
+//       console.error(error)
+//   }
+// }

@@ -29,7 +29,7 @@ const UserRoutines = ({
             <h5>Your list of routines, either start or make a new one</h5>
             <div className="buttonForm">
                 <Link to={'userroutines/makeroutine'}>Make Routine</Link>
-                <Link to={'userroutines/makeroutine'}>Edit routines</Link>
+                <Link to={'userroutines/editroutine'}>Edit routines</Link>
             </div>
             <div className="activityCardContainer">
                                 <h1>Routines</h1>

@@ -16,6 +16,7 @@ import {
 import Register from './components/Register';
 import Welcome from './components/Welcome';
 import MakeRoutine from './components/MakeRoutine';
+// import EditRoutine from './components/EditRoutine';
 
 
 const App = () => {
@@ -139,6 +140,13 @@ const App = () => {
               setRoutines={setRoutines}
             />
           </Route>
+          {/* <Route path={'/userroutines/editroutine'}>
+            <EditRoutine
+              token={token}
+              routines={routines}
+              setRoutines={setRoutines}
+            />
+          </Route> */}
           <Route path='/routines/:routineID'>
             <SingleRoutine
               routines={routines}

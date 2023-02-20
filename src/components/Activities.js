@@ -29,6 +29,7 @@ return (
                     <h3 class="card-title" >Activity: { activity.name }</h3>
                     {/* <p>Name: { activity.name }</p> */}
                     <p>Description: { activity.description }</p>
+                   
 
                     </div>
                 )
@@ -39,5 +40,7 @@ return (
 
 
 )}
+
+
 
 export default Activities;
