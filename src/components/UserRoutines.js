@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { getRoutines } from "./api/requests";
+import { deleteRoutine, getRoutines } from "./api/requests";
 
 const UserRoutines = ({
     routines,
@@ -44,7 +44,10 @@ const UserRoutines = ({
 
                                 <div class="card-body" className="activityCard">
                                     <div id="cardEditAndDelete">
-                                    <Link to={`/userroutines/${routine.id}`}>Edit Eoutine</Link>
+                                    <Link to={`/userroutines/${routine.id}`}>Edit Routine</Link>
+                                    <button onClick={() => {
+                                            deleteRoutine(token, routine.id).then(()=>window.location.reload())
+                                    }}>Delete Routine</button>
                                     </div>
 
                                     <p>Name: {routine.name}</p>

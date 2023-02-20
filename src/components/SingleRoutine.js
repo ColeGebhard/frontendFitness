@@ -31,7 +31,7 @@ const SingleRoutine = ({
     const { name, goal, activities} = currentPost;
 
 
-    return (
+    return (currentPost ?
         <div id='cardcontainer'>
             <div id='userWelcome'>
                 
@@ -41,8 +41,10 @@ const SingleRoutine = ({
                 <ul > 
                         <li  className="routineActivityCards">{
                             activities.map((activity) => {
+
+                                
                                 return (
-                                    <div className="routineActivityCard">
+                                    <div className="routineActivityCard" >
                                         <ul>
                                         <h5>{activity.name}</h5>
                                         <p>Info: {activity.description}</p>
@@ -55,6 +57,10 @@ const SingleRoutine = ({
                             )
                             }</li>
                     </ul>
+            </div>:
+            <div>
+                Going back to routines...
+                {window.location.replace('http://localhost:3000/#/')}
             </div>
     )
 }

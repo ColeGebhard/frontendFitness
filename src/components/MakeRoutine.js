@@ -53,7 +53,8 @@ const MakeRoutine = ({
         } finally {
             setName('');
             setGoal('');
-            // window.location.reload();
+            window.location.replace('http://localhost:3000/#/userroutines');
+            window.location.reload();
         }
 
     }
